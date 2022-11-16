@@ -1,3 +1,31 @@
 body {
-  background: rgb(104, 98, 98);
+  background: rgb(187, 180, 180);
+  margin: 50px;
+}
+.button-creator {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 30px;
+}
+.button-controles {
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px rgb(65, 61, 61);
+}
+
+.css {
+  margin-top: 30px;
+}
+
+.button {
+}
+label,
+select {
+  display: block;
+}
+input,
+select {
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
