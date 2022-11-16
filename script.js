@@ -1,27 +1,43 @@
 const controles = document.forms.buttonCreator;
 const btn = document.querySelector(".button");
 const codigo = document.querySelector(".css");
-const radios = document.querySelectorAll('[type="radio"]');
-const hover = document.querySelector(".hover-color");
+
 controles.addEventListener("change", handleChange);
+
+const handleStyle = {
+  element: btn,
+  backgroundColor(value) {
+    this.element.style.backgroundColor = value;
+  },
+  height(value) {
+    this.element.style.height = value + "px";
+  },
+  width(value) {
+    this.element.style.width = value + "px";
+  },
+  color(value) {
+    this.element.style.color = value;
+  },
+  border(value) {
+    this.element.style.border = value;
+  },
+  borderRadius(value) {
+    this.element.style.borderRadius = value + "px";
+  },
+  fontFamily(value) {
+    this.element.style.fontFamily = value;
+  },
+  fontSize(value) {
+    this.element.style.fontSize = value + "px";
+  },
+  texto(value) {
+    btn.innerText = value;
+  },
+};
 
 function handleChange(event) {
   const target = event.target;
-  if (
-    target.name != "height" &&
-    target.name != "width" &&
-    target.name != "borderRadius" &&
-    target.name != "fontSize" &&
-    target.name != "texto" &&
-    target.name != "boxShadow"
-  ) {
-    btn.style[target.name] = target.value;
-  } else if (target.name == "texto") {
-    btn.innerText = target.value;
-  } else {
-    btn.style[target.name] = target.value + "px";
-  }
-
+  handleStyle[target.name](target.value);
   showCss();
 
   function showCss() {
