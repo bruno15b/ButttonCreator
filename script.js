@@ -1,7 +1,12 @@
 const controles = document.forms.buttonCreator;
 const btn = document.querySelector(".button");
 const codigo = document.querySelector(".css");
+const limpar = document.querySelector(".btnLimpar");
 
+limpar.addEventListener("click", () => {
+  localStorage.clear();
+  document.location.reload();
+});
 controles.addEventListener("change", handleChange);
 
 const handleStyle = {
@@ -38,13 +43,27 @@ const handleStyle = {
 function handleChange(event) {
   const target = event.target;
   handleStyle[target.name](target.value);
+  saveValues(target.name, target.value);
   showCss();
+}
 
-  function showCss() {
-    codigo.innerHTML =
-      "<span>" +
-      "button{ <br>" +
-      btn.style.cssText.split("; ").join(";</span><span>") +
-      "<br>}";
-  }
+function saveValues(name, value) {
+  localStorage[name] = value;
+}
+
+function setValues() {
+  const properties = Object.keys(localStorage);
+  properties.forEach((propertie) => {
+    handleStyle[propertie](localStorage[propertie]);
+    controles.elements[propertie].value = localStorage[propertie];
+    showCss();
+  });
+}
+setValues();
+function showCss() {
+  codigo.innerHTML =
+    "<span>" +
+    "button{ <br>" +
+    btn.style.cssText.split("; ").join(";</span><span>") +
+    "<br>}";
 }

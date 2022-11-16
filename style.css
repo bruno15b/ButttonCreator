@@ -37,3 +37,12 @@ button {
   width: 100px;
   height: 30px;
 }
+
+.btnLimpar {
+  grid-column: 1/2;
+}
+
+.resultado {
+  grid-column: 2/3;
+  grid-row: 1;
+}
